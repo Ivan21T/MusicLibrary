@@ -1,3 +1,4 @@
+using BusinessLayer;
 using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Sqlite;
@@ -18,7 +19,7 @@ builder.Services.AddDbContext<MusicLibraryDbContext>(options =>
     options.UseSqlite(connectionString));
 
 // Repository/Context Services
-builder.Services.AddScoped<UserContext>();
+builder.Services.AddScoped<IDb<User, int>, UserContext>();
 
 // CORS Configuration
 builder.Services.AddCors(options =>

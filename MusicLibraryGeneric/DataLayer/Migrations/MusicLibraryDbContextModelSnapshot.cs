@@ -38,6 +38,9 @@ namespace DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("AddedByUserId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("ArtistId")
                         .HasColumnType("INTEGER");
 
@@ -50,6 +53,8 @@ namespace DataLayer.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("AlbumId");
+
+                    b.HasIndex("AddedByUserId");
 
                     b.HasIndex("ArtistId");
 
@@ -93,6 +98,9 @@ namespace DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("AddedByUserId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("AlbumId")
                         .HasColumnType("INTEGER");
 
@@ -104,12 +112,22 @@ namespace DataLayer.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
+                    b.Property<byte[]>("ImageData")
+                        .IsRequired()
+                        .HasColumnType("BLOB");
+
+                    b.Property<byte[]>("MusicData")
+                        .IsRequired()
+                        .HasColumnType("BLOB");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.HasKey("TrackId");
+
+                    b.HasIndex("AddedByUserId");
 
                     b.HasIndex("AlbumId");
 
@@ -160,22 +178,38 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("BusinessLayer.Album", b =>
                 {
+                    b.HasOne("BusinessLayer.User", "AddedBy")
+                        .WithMany("AddedAlbums")
+                        .HasForeignKey("AddedByUserId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
                     b.HasOne("BusinessLayer.Artist", "Artist")
                         .WithMany("Albums")
                         .HasForeignKey("ArtistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("AddedBy");
+
                     b.Navigation("Artist");
                 });
 
             modelBuilder.Entity("BusinessLayer.Track", b =>
                 {
+                    b.HasOne("BusinessLayer.User", "AddedBy")
+                        .WithMany("AddedTracks")
+                        .HasForeignKey("AddedByUserId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
                     b.HasOne("BusinessLayer.Album", "Album")
                         .WithMany("Tracks")
                         .HasForeignKey("AlbumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("AddedBy");
 
                     b.Navigation("Album");
                 });
@@ -188,6 +222,13 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("BusinessLayer.Artist", b =>
                 {
                     b.Navigation("Albums");
+                });
+
+            modelBuilder.Entity("BusinessLayer.User", b =>
+                {
+                    b.Navigation("AddedAlbums");
+
+                    b.Navigation("AddedTracks");
                 });
 #pragma warning restore 612, 618
         }

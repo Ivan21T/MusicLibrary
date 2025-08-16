@@ -25,5 +25,17 @@ public class MusicLibraryDbContext:DbContext
         }
         base.OnConfiguring(optionsBuilder);
     }
-    
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Track>()
+            .HasOne(t => t.AddedBy) 
+            .WithMany(u => u.AddedTracks)
+            .OnDelete(DeleteBehavior.SetNull);
+        
+        modelBuilder.Entity<Album>()
+            .HasOne(a => a.AddedBy) 
+            .WithMany(u => u.AddedAlbums)
+            .OnDelete(DeleteBehavior.SetNull);
+    }
 }

@@ -16,7 +16,7 @@
                 <img src="..//Assets/images/HarmoniX.png" 
                  alt="HarmoniX Logo" 
                  style="height: 75px; width: auto;">
-            <span>HarmoniX</span>
+                <span>HarmoniX</span>
             </div>
             <div class="user-actions">
                 <button class="btn btn-outline" id="back-to-home">
@@ -26,7 +26,8 @@
             </div>
         </div>
     </header>
-
+    <div class="alert-container" id="alert-container"></div>
+    
     <div class="auth-container">
         <div class="auth-card" id="login-form">
             <div class="auth-header">
@@ -34,11 +35,6 @@
                 <p class="auth-subtitle">Sign in to your HarmoniX account</p>
             </div>
             <div class="auth-body">
-                <div class="form-message error" style="display: none;" id="login-error">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <span>Invalid email or password. Please try again.</span>
-                </div>
-                
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="login-email" class="form-label">Email Address</label>
@@ -70,14 +66,9 @@
                 <p class="auth-subtitle">Join HarmoniX to discover new music</p>
             </div>
             <div class="auth-body">
-                <div class="form-message success" style="display: none;" id="register-success">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Registration successful! Please check your email to verify your account.</span>
-                </div>
-                
                 <form id="registerForm">
                     <div class="form-group">
-                        <label for="register-name" class="form-label">Full Name</label>
+                        <label for="register-name" class="form-label">Username</label>
                         <input type="text" id="register-name" class="form-control" placeholder="Enter your full name" required>
                     </div>
                     
@@ -119,11 +110,6 @@
                 <p class="auth-subtitle">We'll send you a link to reset your password</p>
             </div>
             <div class="auth-body">
-                <div class="form-message success" style="display: none;" id="forgot-success">
-                    <i class="fas fa-check-circle"></i>
-                    <span>Password reset link sent! Please check your email.</span>
-                </div>
-                
                 <form id="forgotForm">
                     <div class="form-group">
                         <label for="forgot-email" class="form-label">Email Address</label>
@@ -143,34 +129,10 @@
         </div>
     </div>
 
-    <footer>
-        <div class="music-notes" id="music-notes"></div>
-        <div class="footer-container">
-            <div class="footer-logo">
-                 <img src="..//Assets/images/HarmoniX.png" 
-                 alt="HarmoniX Logo" 
-                 style="height: 60px; width: auto;">
-            <span>HarmoniX</span>
-            </div>
-            
-            <div class="footer-links">
-                <a href="#" class="footer-link">Home</a>
-                <a href="#" class="footer-link">Pricing</a>
-                <a href="#" class="footer-link">About</a>
-                <a href="#" class="footer-link">Contact</a>
-            </div>
-            
-            <div class="footer-social">
-                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
-            
-            <p class="footer-copyright">&copy; <script>document.write(new Date().getFullYear());</script>
-                 HarmoniX Music. All rights reserved.</p>
-        </div>
-    </footer>
-
+    <script src="/JS/config.js"></script>
+    <script src="/JS/footer.js"></script>
     <script src="/JS/signUp.js"></script>
+
+    <harmonix-footer></harmonix-footer>
 </body>
 </html>
