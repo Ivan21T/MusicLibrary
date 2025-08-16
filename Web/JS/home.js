@@ -114,7 +114,7 @@
             signInBtn.addEventListener('click', function() {
                 if(userData)
                 {
-                    window.location.href="managment.html"
+                    window.location.href = 'managment.html?page=account';
                 }
                 else{
                     window.location.href="signUp.html"
