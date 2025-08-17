@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    emailjs.init('42CDgQR6M-VclRTEw');
     // DOM Elements
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
@@ -194,19 +195,37 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = document.getElementById('forgot-email').value;
         
         try {
-            const response = await fetch(`${window.API_CONFIG.AUTH}/forgot-password`, {
+            const response = await fetch(`${window.API_CONFIG.USER}/send-otp`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
+                body: JSON.stringify(email)
             });
             
             if (!response.ok) {
-                errorMessage=(await response.text()) || 'Registration failed!';
+                errorMessage=(await response.text()) || 'Fail to send email!';
                 throw new Error(errorMessage);
             }
-            
-            showAlert('Password reset link sent! Please check your email.', 'success');
-            this.reset();
+            const otp = await response.json();
+            const emailParams={
+                email:otp.email,
+                passcode:otp.otp,
+                time:otp.expiryTime
+            }
+            const responseEmailJS = await emailjs.send(
+            'service_9yme9bl',    
+            'template_bccn50k',   
+            emailParams);
+            if(responseEmailJS.status===200)
+            {
+                showAlert('Password reset link sent! Please check your email.', 'success');
+                this.reset();
+                setTimeout(() => {
+                window.location.href = "verificationCode.html";
+                }, 1500);
+            }
+            else{
+                throw new Error("Failed to send email!")
+            }
             
         } catch (error) {
             showAlert(error.message, 'error');

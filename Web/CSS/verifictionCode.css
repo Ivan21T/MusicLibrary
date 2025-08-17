@@ -88,46 +88,34 @@
             transform: translateY(-2px);
         }
 
-        /* Modern centered toast notification */
-        .toast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-30px);
-            padding: 16px 24px;
-            border-radius: 12px;
-            font-size: 1rem;
-            color: white;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            z-index: 1000;
-            max-width: 90%;
-            width: max-content;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            pointer-events: none;
+        .resend-link {
+            display: block;
+            margin-top: 1rem;
+            color: var(--primary);
+            cursor: pointer;
         }
 
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
+        .resend-link:hover {
+            text-decoration: underline;
         }
 
-        .toast.success {
-            background-color: var(--success);
-            border-left: 5px solid rgba(255, 255, 255, 0.3);
+        .status-message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
         }
 
-        .toast.error {
-            background-color: var(--danger);
-            border-left: 5px solid rgba(255, 255, 255, 0.3);
+        .success {
+            background-color: rgba(0, 184, 148, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(0, 184, 148, 0.3);
         }
 
-        .toast-icon {
-            font-size: 1.2rem;
+        .error {
+            background-color: rgba(214, 48, 49, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(214, 48, 49, 0.3);
         }
 
         @media (max-width: 480px) {
@@ -139,12 +127,5 @@
             
             .verification-container {
                 padding: 1.5rem;
-            }
-
-            .toast {
-                top: 10px;
-                width: calc(100% - 40px);
-                max-width: none;
-                padding: 14px 20px;
             }
         }

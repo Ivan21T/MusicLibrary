@@ -8,6 +8,7 @@ public class MusicLibraryDbContext:DbContext
     public DbSet<Album> Albums { get; set; }
     public DbSet<Artist> Artists { get; set; }
     public DbSet<Track> Tracks { get; set; } 
+    public DbSet<OTPCode> OTPCodes { get; set; }
     
     public MusicLibraryDbContext() : base()
     {
