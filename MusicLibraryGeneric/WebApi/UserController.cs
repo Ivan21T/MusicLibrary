@@ -121,17 +121,14 @@ public class UsersController : ControllerBase
         {
             return BadRequest("User with that email doesn't exist!");
         }
-        // Generate OTP
         var otp = new Random().Next(100000, 999999).ToString();
         var expiryTime = DateTime.Now.AddMinutes(15);
-
-        // Clear old OTPs
+        
         var existingOtps = await _dbContext.OTPCodes
             .Where(o => o.Email == email)
             .ToListAsync();
         _dbContext.OTPCodes.RemoveRange(existingOtps);
-
-        // Store new OTP
+        
         await _dbContext.OTPCodes.AddAsync(new OTPCode
         {
             Email = email,
@@ -142,27 +139,39 @@ public class UsersController : ControllerBase
 
         return Ok(new { email,otp, expiryTime });
     }
+    [HttpPost("check-otp")]
+    public async Task<IActionResult> CheckOtp([FromBody] CheckOtpDTO request)
+    {
+        var otpObject = _dbContext.OTPCodes.FirstOrDefault(o => o.Email == request.Email);
+
+        if (otpObject == null)
+            return BadRequest("Please resend!");
+
+        if (DateTime.Now > otpObject.ExpiryTime)
+        {
+            _dbContext.OTPCodes.Remove(otpObject);
+            await _dbContext.SaveChangesAsync();
+            return BadRequest("OTP expired! Get new code!");
+        }
+        
+        if (otpObject.Code == request.Code)
+        {
+            _dbContext.OTPCodes.Remove(otpObject);
+            await _dbContext.SaveChangesAsync();
+            return Ok();
+        }
+
+        return BadRequest("OTP code doesn't match!");
+    }
     //reset password
     [HttpPost("reset-password")]
     public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDTO request)
     {
-        // Find valid OTP
-        var otpRecord = await _dbContext.OTPCodes
-            .FirstOrDefaultAsync(o => o.Email == request.Email 
-                                      && o.Code == request.OTP
-                                      && o.ExpiryTime > DateTime.Now);
-
-        if (otpRecord == null) 
-            return BadRequest("Invalid or expired OTP");
-
-        // Update password
         var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
         if (user == null) 
             return BadRequest("User not found");
 
         user.Password = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
-        _dbContext.OTPCodes.Remove(otpRecord); // Delete used OTP
-        await _dbContext.SaveChangesAsync();
 
         return Ok("Password reset successful");
     }

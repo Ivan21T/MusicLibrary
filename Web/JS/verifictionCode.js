@@ -36,10 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Focus first input on load
-    codeInputs.firstChild.focus();
+    codeInputs.firstElementChild.focus();
     
     // Verify button click handler
-    verifyBtn.addEventListener('click', function() {
+    verifyBtn.addEventListener('click', async function() {
         const inputs = document.querySelectorAll('.code-input');
         let code = '';
         
@@ -53,15 +53,32 @@ document.addEventListener('DOMContentLoaded', function() {
             showStatus('Please enter a complete 6-digit code', 'error');
             return;
         }
-        
-        // Here you would typically verify with your backend
-        // For demo, we'll just show success
-        showStatus('Verification successful! Redirecting...', 'success');
-        
-        // Redirect after 1.5 seconds (simulate verification)
-        setTimeout(() => {
-            window.location.href = 'new-password.html?code=' + code;
-        }, 1500);
+        try{
+             const email = localStorage.getItem('email');
+             const formData = {
+                email:email,
+                code:code
+            };
+            const response = await fetch(`${window.API_CONFIG.USER}/check-otp`,{
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            if(response.ok)
+            {
+                showStatus('Verification successful! Redirecting...', 'success');
+                setTimeout(() => {
+                    window.location.href = 'newPassword.html';
+                }, 1500);
+            }
+            else{
+                errorMessage=(await response.text() || 'Fail!');
+                throw new Error(errorMessage)
+            }
+        }
+        catch(errorMessage){
+            showStatus(errorMessage.message,'error');
+        }
     });
     
     // Resend code link

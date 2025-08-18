@@ -206,10 +206,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error(errorMessage);
             }
             const otp = await response.json();
+            const expiryDate = new Date(otp.expiryTime);
             const emailParams={
                 email:otp.email,
                 passcode:otp.otp,
-                time:otp.expiryTime
+                time: expiryDate.toLocaleString("en-GB", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: false
+                }).replace(",", "")
             }
             const responseEmailJS = await emailjs.send(
             'service_9yme9bl',    
@@ -217,6 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
             emailParams);
             if(responseEmailJS.status===200)
             {
+                localStorage.setItem('email',email);
                 showAlert('Password reset link sent! Please check your email.', 'success');
                 this.reset();
                 setTimeout(() => {
