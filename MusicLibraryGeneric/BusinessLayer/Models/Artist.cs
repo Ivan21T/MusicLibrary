@@ -17,7 +17,6 @@ public class Artist
     [StringLength(35, ErrorMessage = "Last name cannot exceed 35 characters")]
     public string LastName { get; set; }
     
-    [Required(ErrorMessage = "Pseudonim is required")]
     [StringLength(35, ErrorMessage = "Pseudonim cannot exceed 35 characters")]
     public string Pseudonim { get; set; }
     

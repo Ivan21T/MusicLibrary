@@ -71,40 +71,46 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'home.html'; 
     });
     
-    // Show alert function
     function showAlert(message, type) {
         const alertContainer = document.getElementById('alert-container');
-        
-        // Create alert element
+
+        const existingPending = alertContainer.querySelector('.alert-message.pending');
+        if (existingPending) {
+            existingPending.remove();
+        }
+
         const alert = document.createElement('div');
         alert.className = `alert-message ${type}`;
-        
-        // Add icon based on type
+
         const icon = document.createElement('i');
-        icon.className = type === 'error' ? 'fas fa-exclamation-circle' : 'fas fa-check-circle';
+        if (type === 'error') {
+            icon.className = 'fas fa-exclamation-circle';
+        } else if (type === 'pending') {
+            icon.className = 'fas fa-spinner fa-spin';
+        } else {
+            icon.className = 'fas fa-check-circle';
+        }
         alert.appendChild(icon);
-        
-        // Add message text
+
         const text = document.createElement('span');
         text.textContent = message;
         alert.appendChild(text);
-        
-        // Add to container
+
         alertContainer.appendChild(alert);
-        
-        // Trigger animation
+
         setTimeout(() => {
             alert.classList.add('show');
         }, 10);
-        
-        // Remove after 5 seconds
+
         setTimeout(() => {
             alert.classList.remove('show');
             setTimeout(() => {
                 alert.remove();
             }, 300);
-        }, 5000);
+        }, type === 'pending' ? 10000 : 5000);
     }
+
+
     
     // Login form submission
     document.getElementById('loginForm').addEventListener('submit', async function(e) {
@@ -205,6 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorMessage=(await response.text()) || 'Fail to send email!';
                 throw new Error(errorMessage);
             }
+            showAlert("Pending...",'pending')
             const otp = await response.json();
             const expiryDate = new Date(otp.expiryTime);
             const emailParams={

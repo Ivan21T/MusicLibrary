@@ -163,7 +163,7 @@ public class UsersController : ControllerBase
 
         return BadRequest("OTP code doesn't match!");
     }
-    //reset password
+    
     [HttpPost("reset-password")]
     public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDTO request)
     {
@@ -172,6 +172,7 @@ public class UsersController : ControllerBase
             return BadRequest("User not found");
 
         user.Password = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
+        await _dbContext.SaveChangesAsync();
 
         return Ok("Password reset successful");
     }

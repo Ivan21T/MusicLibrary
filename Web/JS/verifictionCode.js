@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    emailjs.init('42CDgQR6M-VclRTEw');
     const codeInputs = document.getElementById('codeInputs');
     const verifyBtn = document.getElementById('verifyBtn');
     const resendLink = document.getElementById('resendLink');
@@ -82,8 +83,48 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Resend code link
-    resendLink.addEventListener('click', function() {
-        showStatus('New verification code sent to your email', 'success');
+    resendLink.addEventListener('click', async function() {
+        try{
+                const email=localStorage.getItem('email');
+                const response = await fetch(`${window.API_CONFIG.USER}/send-otp`,{
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(email)
+                    });
+                if (!response.ok) {
+                errorMessage=(await response.text()) || 'Fail to send email!';
+                throw new Error(errorMessage);
+                }
+                const otp = await response.json();
+                const expiryDate = new Date(otp.expiryTime);
+                const emailParams={
+                    email:otp.email,
+                    passcode:otp.otp,
+                    time: expiryDate.toLocaleString("en-GB", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false
+                }).replace(",", "")
+            }
+                const responseEmailJS = await emailjs.send(
+                'service_9yme9bl',    
+                'template_bccn50k',   
+                emailParams);
+                if(responseEmailJS.status===200)
+                {
+                    showStatus("Success!Please check your email!",'success');
+                }
+                else{
+                    throw new Error("Failed to send email!")
+                }
+    }
+    catch(error)
+    {
+        showStatus(error.message,'error')
+    }
     });
     
     // Show status message

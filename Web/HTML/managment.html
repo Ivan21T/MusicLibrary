@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HarmoniX</title>
+    <title>HarmoniX - Music Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/managment.css">
@@ -20,24 +20,84 @@
                     <i class="fas fa-home"></i> Home
                 </a>
                 <a href="#" class="nav-link" id="accountLink">
-                    <i class="fas fa-user"></i>Account</a>
+                    <i class="fas fa-user"></i> Account
+                </a>
                 <a href="#" class="nav-link active" id="addLink">
-                    <i class="fas fa-plus"></i>Add Content</a>
+                    <i class="fas fa-plus"></i> Add Content
+                </a>
                 <a href="#" class="nav-link" id="libraryLink">
-                    <i class="fas fa-upload"></i>Uploads</a>
+                    <i class="fas fa-upload"></i> Uploads
+                </a>
                 <a href="#" class="nav-link exit" id="exitLink">
-                    <i class="fa-solid fa-xmark"></i>Exit</a>
+                    <i class="fa-solid fa-xmark"></i> Exit
+                </a>
             </div>
         </div>
     </header>
 
     <main class="main-content" id="mainContent">
-        <!-- Content will be dynamically loaded here -->
+        <!-- Selection Screen Content -->
+        <div class="selection-screen">
+            <h1 class="selection-title">Add New Content</h1>
+            <p>Choose what you want to add to your music library</p>
+            
+            <div class="selection-options">
+                <div class="selection-card" id="addAlbumCard">
+                    <i class="fas fa-compact-disc"></i>
+                    <h3>Add Album</h3>
+                    <p>Upload a complete album with multiple tracks</p>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Select
+                    </button>
+                </div>
+                
+                <div class="selection-card" id="addSongCard">
+                    <i class="fas fa-music"></i>
+                    <h3>Add Song</h3>
+                    <p>Upload a single track to your library</p>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-plus"></i> Select
+                    </button>
+                </div>
+            </div>
+        </div>
     </main>
 
-<script src="../JS/managment.js"></script>
-<script src="../JS/footer.js"></script>
+    <!-- Artist Modal -->
+    <div id="artistModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Add New Artist</h2>
+            <form id="artistForm">
+                <div class="modal-form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                    <span class="validation-error"></span>
+                </div>
+                <div class="modal-form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                    <span class="validation-error"></span>
+                </div>
+                <div class="modal-form-group">
+                    <label for="pseudonim">Stage Name:</label>
+                    <input type="text" id="pseudonim" name="pseudonim" required>
+                    <span class="validation-error"></span>
+                </div>
+                <div class="modal-form-group">
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" name="country" required>
+                    <span class="validation-error"></span>
+                </div>
+                <button type="submit" class="btn-submit">Add Artist</button>
+            </form>
+        </div>
+    </div>
 
-<harmonix-footer></harmonix-footer>
+    <script src="../JS/config.js"></script>
+    <script src="../JS/managment.js"></script>
+    <script src="../JS/footer.js"></script>
+
+    <harmonix-footer></harmonix-footer>
 </body>
 </html>

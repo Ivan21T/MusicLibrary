@@ -1,12 +1,15 @@
- :root {
+:root {
             --primary: #6c5ce7;
             --primary-dark: #5649c0;
+            --primary-light: #a29bfe;
             --secondary: #00cec9;
             --dark: #2d3436;
             --light: #f5f6fa;
             --gray: #dfe6e9;
             --danger: #d63031;
             --success: #00b894;
+            --white: #ffffff;
+            overflow-x: hidden;
         }
 
         * {
@@ -23,6 +26,18 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        body.modal-open::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        body.modal-open {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+            overflow: hidden;
         }
 
         /* Header Styles */
@@ -116,11 +131,6 @@
             height: 3px;
             background-color: var(--primary);
             border-radius: 3px;
-        }
-
-        /* Back to Home button */
-        .back-home {
-            margin-bottom: 1.5rem;
         }
 
         /* Selection Screen */
@@ -223,11 +233,6 @@
             box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
         }
 
-        .form-textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-
         .btn {
             padding: 0.7rem 1.5rem;
             border-radius: 8px;
@@ -239,6 +244,7 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 1rem;
+            margin-right: 10px;
         }
 
         .btn-primary {
@@ -248,11 +254,6 @@
 
         .btn-primary:hover {
             background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .btn-primary.delete-btn:hover{
-            background-color: rgb(189, 20, 20);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -276,17 +277,6 @@
         .btn-back:hover {
             background-color: #d1d8dc;
             transform: translateY(-2px);
-        }
-
-        .btn-danger {
-            background-color: var(--danger);
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background-color: #c0392b;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .image-preview {
@@ -367,248 +357,258 @@
             font-size: 0.9rem;
         }
 
-        /* Added Items */
-        .added-items {
-            margin-top: 3rem;
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow: auto;
         }
 
-        .items-grid {
+        .modal-content {
+            background-color: var(--white);
+            margin: auto;
+            padding: 25px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            color: var(--dark);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            max-height: 90vh;
+            overflow-y: hidden;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .close-modal:hover {
+            color: var(--primary-dark);
+        }
+
+        .modal-form-group {
+            margin-bottom: 15px;
+        }
+
+        .modal-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .modal-form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            background-color: var(--white);
+            color: var(--dark);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .modal-form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+
+        .validation-error {
+            color: var(--danger);
+            font-size: 12px;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .btn-submit {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Uploads Section */
+        .uploads-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .uploads-tabs {
+            display: flex;
+            gap: 1rem;
+            border-bottom: 2px solid var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            border-bottom: 3px solid var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .uploads-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
         }
 
-        .item-card {
+        .upload-card {
             background-color: white;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
-            animation: fadeInUp 0.5s ease-out;
         }
 
-        .item-card:hover {
+        .upload-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .item-image {
+        .upload-image {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
-            display: block;
         }
 
-        .item-content {
-            padding: 1.2rem;
-        }
-
-        .item-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .item-subtitle {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 0.5rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .item-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
-            color: #888;
-        }
-
-        /* Song Search */
-        .song-search-container {
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--gray);
-            border-radius: 8px;
+        .upload-info {
             padding: 1rem;
         }
 
-        .search-results {
-            max-height: 300px;
-            overflow-y: auto;
-            margin-top: 1rem;
-            border: 1px solid var(--gray);
-            border-radius: 8px;
-            display: none;
-        }
-
-        .song-result {
-            padding: 0.8rem;
-            border-bottom: 1px solid var(--gray);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .song-result:hover {
-            background-color: rgba(108, 92, 231, 0.05);
-        }
-
-        .song-result:last-child {
-            border-bottom: none;
-        }
-
-        .selected-songs {
-            margin-top: 1rem;
-        }
-
-        .selected-song {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem;
-            background-color: rgba(0, 206, 201, 0.1);
-            border-radius: 6px;
+        .upload-title {
+            font-size: 1.1rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        /* Audio file upload */
-        .audio-preview {
-            width: 100%;
-            margin: 1rem 0;
-            display: none;
+        .upload-artist {
+            color: #666;
+            margin-bottom: 0.5rem;
         }
 
-        .audio-preview audio {
-            width: 100%;
+        .upload-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
         }
 
-        /* Account Page */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #888;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--gray);
+        }
+
+        /* Account Section */
         .account-container {
             display: flex;
+            flex-direction: column;
             gap: 2rem;
-            margin-top: 2rem;
         }
 
-        .account-details {
-            flex: 1;
+        .profile-card {
             background-color: white;
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .account-liked {
-            flex: 1;
-            background-color: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        .user-profile {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            text-align: center;
         }
 
-        .user-avatar {
-            width: 100px;
-            height: 100px;
+        .profile-image {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--primary);
+            margin-bottom: 1rem;
+            border: 4px solid var(--primary-light);
         }
 
-        .user-info h2 {
+        .profile-name {
             font-size: 1.5rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        .user-info p {
+        .profile-email {
             color: #666;
-        }
-
-        .account-section {
             margin-bottom: 1.5rem;
         }
 
-        .account-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            border-bottom: 2px solid var(--gray);
-            padding-bottom: 0.5rem;
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
         }
 
-        .account-field {
+        .account-details {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .detail-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray);
         }
 
-        .account-field label {
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
             font-weight: 500;
             color: #555;
         }
 
-        .account-field span {
-            font-weight: 400;
-        }
-
-        .edit-btn {
-            margin-top: 1rem;
-            width: 100%;
-        }
-        .delete-btn {
-            margin-top: 1rem;
-            width: 100%;
-            background-color: red;
-        }
-
-        /* Liked Songs */
-        .liked-song {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--gray);
-        }
-
-        .liked-song:last-child {
-            border-bottom: none;
-        }
-
-        .liked-song-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .liked-song-info {
-            flex: 1;
-        }
-
-        .liked-song-title {
-            font-weight: 500;
-            margin-bottom: 0.2rem;
-        }
-
-        .liked-song-artist {
-            font-size: 0.8rem;
-            color: #666;
-        }
-
-        .liked-song-duration {
-            font-size: 0.9rem;
-            color: #888;
+        .detail-value {
+            color: #333;
         }
 
         /* Animations */
@@ -625,28 +625,6 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
             }
         }
 
@@ -672,7 +650,22 @@
                 width: 100%;
             }
 
-            .account-container {
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .uploads-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-actions {
                 flex-direction: column;
+                width: 100%;
+            }
+
+            .profile-actions .btn {
+                width: 100%;
+                justify-content: center;
             }
         }

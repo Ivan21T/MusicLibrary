@@ -15,6 +15,7 @@
         public async Task Create(User user)
         {
             user.Password=BCrypt.Net.BCrypt.HashPassword(user.Password);
+            user.Created = DateTime.Now;
             await _dbContext.AddAsync(user);
             await _dbContext.SaveChangesAsync();
         }
@@ -62,7 +63,7 @@
             var existingUser = await Read(user.UserId, false, false);
             if (existingUser == null)
             {
-                throw new InvalidOperationException("User not found");
+                throw new Exception("User not found");
             }
             existingUser.Username = user.Username;
             if (!string.IsNullOrEmpty(user.Password) && 

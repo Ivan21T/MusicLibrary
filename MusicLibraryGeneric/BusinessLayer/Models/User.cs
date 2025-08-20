@@ -19,6 +19,9 @@ public class User
     [Required]
     public string Password { get; set; }
     
+    [Required]
+    public DateTime Created { get; set; }
+    
     public List<Track> AddedTracks { get; set; }
     public List<Album> AddedAlbums { get; set; }
     public User()

@@ -7,6 +7,8 @@
     --gray: #dfe6e9;
     --danger: #d63031;
     --success: #00b894;
+    --pending:yellow;
+    overflow-x: hidden;
 }
 
 * {
@@ -133,7 +135,11 @@ header {
     color: var(--success);
     border-left: 4px solid var(--success);
 }
-
+.alert-message.pending{
+    background-color: white;
+    color: var(--pending);
+    border-left: 4px solid var(--pending);
+}
 .alert-message i {
     font-size: 1.2rem;
 }
