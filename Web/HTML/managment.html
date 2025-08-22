@@ -35,6 +35,8 @@
         </div>
     </header>
 
+    <div class="alert-container" id="alert-container"></div>
+
     <main class="main-content" id="mainContent">
         <!-- Selection Screen Content -->
         <div class="selection-screen">
@@ -72,22 +74,19 @@
                 <div class="modal-form-group">
                     <label for="firstName">First Name:</label>
                     <input type="text" id="firstName" name="firstName" required>
-                    <span class="validation-error"></span>
                 </div>
                 <div class="modal-form-group">
                     <label for="lastName">Last Name:</label>
                     <input type="text" id="lastName" name="lastName" required>
-                    <span class="validation-error"></span>
                 </div>
                 <div class="modal-form-group">
                     <label for="pseudonim">Stage Name:</label>
-                    <input type="text" id="pseudonim" name="pseudonim" required>
-                    <span class="validation-error"></span>
+                    <input type="text" id="pseudonim" name="pseudonim">
                 </div>
                 <div class="modal-form-group">
                     <label for="country">Country:</label>
                     <input type="text" id="country" name="country" required>
-                    <span class="validation-error"></span>
+
                 </div>
                 <button type="submit" class="btn-submit">Add Artist</button>
             </form>

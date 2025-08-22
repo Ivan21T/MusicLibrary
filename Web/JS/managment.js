@@ -8,7 +8,6 @@
         ];
 
         const userData=JSON.parse(sessionStorage.getItem('user'));
-        console.log(userData.username)
 
         // Sample uploads data
         const userUploads = {
@@ -65,10 +64,65 @@
                     }
                 });
             });
-            //Membership
+            //Membership images
             function setImageByMembership(date)
             {
-                const dateOfCreation=userData.created
+                const dateOfCreation=new Date(userData.created);
+                var source ="";
+                const today=new Date(date);
+                const years=(today-dateOfCreation)/(1000*60*60*24*365.25);
+                if(years<3)
+                {
+                    source="/Assets/images/bronze_membership.png";
+                }
+                else if(years>=3 && years<=5)
+                {
+                    source="/Assets/images/silver_membership.png";
+                }
+                else{
+                    source="/Assets/images/gold_membership.png";
+                }
+                return source;
+
+            }
+            //Alert function
+            function showAlert(message, type) {
+                const alertContainer = document.getElementById('alert-container');
+
+                const existingPending = alertContainer.querySelector('.alert-message.pending');
+                if (existingPending) {
+                    existingPending.remove();
+                }
+
+                const alert = document.createElement('div');
+                alert.className = `alert-message ${type}`;
+
+                const icon = document.createElement('i');
+                if (type === 'error') {
+                    icon.className = 'fas fa-exclamation-circle';
+                } else if (type === 'pending') {
+                    icon.className = 'fas fa-spinner fa-spin';
+                } else {
+                    icon.className = 'fas fa-check-circle';
+                }
+                alert.appendChild(icon);
+
+                const text = document.createElement('span');
+                text.textContent = message;
+                alert.appendChild(text);
+
+                alertContainer.appendChild(alert);
+
+                setTimeout(() => {
+                    alert.classList.add('show');
+                }, 10);
+
+                setTimeout(() => {
+                    alert.classList.remove('show');
+                    setTimeout(() => {
+                        alert.remove();
+                    }, 300);
+                }, type === 'pending' ? 10000 : 5000);
             }
             //EU Date
             function formatDateToEU(dateString) {
@@ -112,7 +166,7 @@
             });
 
             // Artist Form submission
-            artistForm.addEventListener('submit', function(e) {
+            artistForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
                 // Validate form
@@ -121,56 +175,38 @@
                 const pseudonim = document.getElementById('pseudonim').value.trim();
                 const country = document.getElementById('country').value.trim();
                 
-                let isValid = true;
-                
-                // Simple validation
-                if (!firstName) {
-                    document.querySelector('#firstName + .validation-error').textContent = 'First name is required';
-                    isValid = false;
-                }
-                
-                if (!lastName) {
-                    document.querySelector('#lastName + .validation-error').textContent = 'Last name is required';
-                    isValid = false;
-                }
-                
-                if (!pseudonim) {
-                    document.querySelector('#pseudonim + .validation-error').textContent = 'Stage name is required';
-                    isValid = false;
-                }
-                
-                if (!country) {
-                    document.querySelector('#country + .validation-error').textContent = 'Country is required';
-                    isValid = false;
-                }
-                
-               
                     // Create new artist
                     const newArtist = {
-                        artistId: Date.now(),
                         firstName,
                         lastName,
                         pseudonim,
                         country
                     };
-                    
-                    // Add to artist database
-                    artistDatabase.push({
-                        id: newArtist.artistId,
-                        firstName: newArtist.firstName,
-                        lastName: newArtist.lastName,
-                        pseudonim: newArtist.pseudonim,
-                        country: newArtist.country
+                    try{
+                    const response=await fetch(`${window.API_CONFIG.ARTIST}`,{
+                        method:"POST",
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newArtist)
                     });
-                    
-                    // Update the input field that triggered the modal
-                    if (currentArtistInput) {
-                        currentArtistInput.value = pseudonim;
+
+                    if(response.ok)
+                    {
+                        if (currentArtistInput) {
+                            currentArtistInput.value = pseudonim;
+                        }
+                        closeArtistModal();
+                        showAlert("Successful create artist!",'success')
                     }
-                    
-                    closeArtistModal();
-                    alert(`Artist "${pseudonim}" has been added successfully!`);
-                });
+                    else{
+                        error=response.text();
+                        throw new Error(error);
+                    }
+                }
+                catch(error)
+                {
+                    showAlert(error.message,'error');
+                }
+            });
 
 
             function loadAccountScreen() {
@@ -179,7 +215,7 @@
                         </button>
                         
                         <div class="profile-card">
-                            <img src="" alt="Profile" class="profile-image">
+                            <img src="${setImageByMembership(Date.now())}" alt="Profile" class="profile-image">
                             <h2 class="profile-name">${userData.username}</h2>
                             <p class="profile-email">${userData.email}</p>
                             

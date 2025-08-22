@@ -428,14 +428,54 @@
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
         }
-
-        .validation-error {
-            color: var(--danger);
-            font-size: 12px;
-            display: block;
-            margin-top: 5px;
+        /*Alert*/
+        .alert-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 500px;
         }
 
+        .alert-message {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+        .alert-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .alert-message.error {
+            background-color: white;
+            color: var(--danger);
+            border-left: 4px solid var(--danger);
+        }
+
+        .alert-message.success {
+            background-color: white;
+            color: var(--success);
+            border-left: 4px solid var(--success);
+        }
+        .alert-message.pending{
+            background-color: white;
+            color: var(--pending);
+            border-left: 4px solid var(--pending);
+        }
+        .alert-message i {
+            font-size: 1.2rem;
+        }
         .btn-submit {
             background-color: var(--primary);
             color: white;
@@ -667,5 +707,11 @@
             .profile-actions .btn {
                 width: 100%;
                 justify-content: center;
+            }
+        }
+        @media (max-width: 576px) {
+            .alert-message {
+                padding: 0.8rem 1rem;
+                font-size: 0.85rem;
             }
         }
