@@ -13,15 +13,12 @@ public class Track
     [StringLength(50,ErrorMessage ="Title must be 50 characters or less")]
     public string Title { get; set; }
     
-    [Range(0.1, double.MaxValue, ErrorMessage = "Duration must be positive")]
-    public double Duration { get; set; }
-    
     public Album Album { get; set; }
     public List<Artist> Artists { get; set; }
     
     [Required]
     [StringLength(30,ErrorMessage ="Genre must be 30 characters or less")]
-    public string Genre { get; set; }
+    public Genre Genre { get; set; }
     
     public byte[] ImageData { get; set; }
     
@@ -35,28 +32,27 @@ public class Track
         Artists = new List<Artist>();
     }
 
-    public Track(string title, double duration,string genre,byte[] musicData)
+    public Track(string title, Genre genre,byte[] musicData)
     {
         Artists = new List<Artist>();
         Title = title;
-        Duration = duration;
         Genre = genre;
         MusicData=musicData;
     }
 
-    public Track(string title, double duration, string genre, byte[] musicData, byte[] imageData)
-        : this(title, duration, genre, musicData)
+    public Track(string title,Genre genre, byte[] musicData, byte[] imageData)
+        : this(title, genre, musicData)
     {
         ImageData = imageData;
     }
-    public Track(string title, double duration, string genre, byte[] musicData, User addedBy)
-        : this(title, duration, genre, musicData)
+    public Track(string title, Genre genre, byte[] musicData, User addedBy)
+        : this(title,  genre, musicData)
     {
         AddedBy = addedBy;
     }
 
-    public Track(string title, double duration, string genre, byte[] musicData, byte[] imageData, User addedBy)
-        : this(title, duration, genre, musicData, imageData)
+    public Track(string title, Genre genre, byte[] musicData, byte[] imageData, User addedBy)
+        : this(title, genre, musicData, imageData)
     {
         AddedBy = addedBy;
     }

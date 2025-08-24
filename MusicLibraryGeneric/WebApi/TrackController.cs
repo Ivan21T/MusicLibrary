@@ -29,5 +29,18 @@ public class TrackController : ControllerBase
             return StatusCode(500,"Cannot read all tracks!");
         }
     }
+    [HttpPost]
+    public async Task<ActionResult> Create([FromBody] Track track)
+    {
+        try
+        {
+            await _tracksContext.Create(track);
+            return Ok();
+        }
+        catch
+        {
+            return StatusCode(500,"Cannot create track!");
+        }
+    }
 
 }

@@ -62,7 +62,6 @@ public class TrackContext:IDb<Track,int>
             throw new Exception("Track not found");
             
         }
-        trackFromDb.Duration=track.Duration;
         trackFromDb.Title=track.Title;
         trackFromDb.Genre=track.Genre;
         if (useNavigationalProperties)

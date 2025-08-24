@@ -1,22 +1,8 @@
-// Sample database of artists
         let artistDatabase = [];
+        let userUploads = [];
+        let albumDatabase=[];
 
         const userData=JSON.parse(sessionStorage.getItem('user'));
-
-        // Sample uploads data
-        const userUploads = {
-            albums: [
-                { id: 1, title: "Greatest Hits", artist: "Queen", year: 1981, image: "https://via.placeholder.com/300x300?text=Queen", tracks: 15 },
-                { id: 2, title: "Hotel California", artist: "Eagles", year: 1976, image: "https://via.placeholder.com/300x300?text=Eagles", tracks: 9 },
-                { id: 3, title: "Thriller", artist: "Michael Jackson", year: 1982, image: "https://via.placeholder.com/300x300?text=Thriller", tracks: 9 }
-            ],
-            songs: [
-                { id: 1, title: "Bohemian Rhapsody", artist: "Queen", album: "A Night at the Opera", year: 1975, image: "https://via.placeholder.com/300x300?text=Bohemian+Rhapsody" },
-                { id: 2, title: "Hotel California", artist: "Eagles", album: "Hotel California", year: 1976, image: "https://via.placeholder.com/300x300?text=Hotel+California" },
-                { id: 3, title: "Beat It", artist: "Michael Jackson", album: "Thriller", year: 1982, image: "https://via.placeholder.com/300x300?text=Beat+It" },
-                { id: 4, title: "Sweet Child O' Mine", artist: "Guns N' Roses", album: "Appetite for Destruction", year: 1987, image: "https://via.placeholder.com/300x300?text=Sweet+Child" }
-            ]
-        };
 
         // Function to fetch artist data
         async function loadArtistData(){
@@ -560,13 +546,38 @@
                                 
                                 <div class="form-group">
                                     <label for="songGenre" class="form-label">Genre</label>
-                                    <input type="text" id="songGenre" class="form-input" placeholder="Enter genre">
+                                    <select id="songGenre" class="form-input">
+                                        <option value="">Select a genre</option>
+                                        <option value="0">Pop</option>
+                                        <option value="1">Rock</option>
+                                        <option value="2">Hip Hop</option>
+                                        <option value="3">R&B</option>
+                                        <option value="4">Jazz</option>
+                                        <option value="5">Classical</option>
+                                        <option value="6">Country</option>
+                                        <option value="7">Electronic</option>
+                                        <option value="8">Reggae</option>
+                                        <option value="9">Blues</option>
+                                        <option value="10">Metal</option>
+                                        <option value="11">Folk</option>
+                                        <option value="12">Punk</option>
+                                        <option value="13">Soul</option>
+                                        <option value="14">Funk</option>
+                                        <option value="15">Disco</option>
+                                        <option value="16">Latin</option>
+                                        <option value="17">Gospel</option>
+                                        <option value="18">Indie</option>
+                                    </select>
                                 </div>
-                                
                                 
                                 <div class="form-group">
                                     <label for="songImage" class="form-label">Cover Image</label>
-                                    <img id="songImagePreview" class="image-preview" alt="Song cover preview">
+                                    <div class="image-preview-container">
+                                        <img id="songImagePreview" class="image-preview" alt="Song cover preview" style="display: none;">
+                                        <button type="button" class="image-preview-close" id="songImageCloseBtn" style="display: none;">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
                                     <label for="songImage" class="file-input-label">
                                         <i class="fas fa-image"></i> Choose an image
                                     </label>
@@ -575,18 +586,27 @@
                                 
                                 <div class="form-group">
                                     <label for="songAudio" class="form-label">Audio File</label>
-                                    <label for="songAudio" class="file-input-label">
-                                        <i class="fas fa-music"></i> Choose an audio file
-                                    </label>
-                                    <input type="file" id="songAudio" class="file-input" accept="audio/*">
+                                    <div class="audio-file-container">
+                                        <label for="songAudio" class="file-input-label audio-input-label">
+                                            <i class="fas fa-music"></i> Choose an audio file
+                                        </label>
+                                        <input type="file" id="songAudio" class="file-input" accept="audio/*">
+                                        <div class="audio-file-name-container" id="audioFileNameContainer">
+                                            <span id="audioFileName" class="audio-file-name"></span>
+                                            <button type="button" class="audio-file-close" id="audioFileCloseBtn" style="display: none;">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <button type="submit" class="btn btn-primary">
-                                  Add Song
+                                    Add Song
                                 </button>
                             </form>
                         </div>
                     </div>
+                    
                 `;
                 
                 document.getElementById('backButton').addEventListener('click', function(e) {
@@ -596,6 +616,7 @@
                 
                 const songImageInput = document.getElementById('songImage');
                 const songImagePreview = document.getElementById('songImagePreview');
+                const songImageCloseBtn = document.getElementById('songImageCloseBtn');
                 
                 songImageInput.addEventListener('change', function() {
                     const file = this.files[0];
@@ -604,9 +625,46 @@
                         reader.onload = function(e) {
                             songImagePreview.src = e.target.result;
                             songImagePreview.style.display = 'block';
+                            songImageCloseBtn.style.display = 'block';
                         }
                         reader.readAsDataURL(file);
                     }
+                });
+                
+                songImageCloseBtn.addEventListener('click', function() {
+                    songImagePreview.src = '';
+                    songImagePreview.style.display = 'none';
+                    songImageCloseBtn.style.display = 'none';
+                    songImageInput.value = '';
+                });
+                
+                const songAudioInput = document.getElementById('songAudio');
+                const audioFileName = document.getElementById('audioFileName');
+                const audioFileCloseBtn = document.getElementById('audioFileCloseBtn');
+                
+                // Initialize audio file name and close button as hidden
+                audioFileName.textContent = '';
+                audioFileName.style.display = 'none';
+                audioFileCloseBtn.style.display = 'none';
+                
+                songAudioInput.addEventListener('change', function() {
+                    const file = this.files[0];
+                    if (file) {
+                        audioFileName.textContent = file.name;
+                        audioFileName.style.display = 'block';
+                        audioFileCloseBtn.style.display = 'flex';
+                    } else {
+                        audioFileName.textContent = '';
+                        audioFileName.style.display = 'none';
+                        audioFileCloseBtn.style.display = 'none';
+                    }
+                });
+                
+                audioFileCloseBtn.addEventListener('click', function() {
+                    songAudioInput.value = '';
+                    audioFileName.textContent = '';
+                    audioFileName.style.display = 'none';
+                    audioFileCloseBtn.style.display = 'none';
                 });
                 
                 const songArtistInput = document.getElementById('songArtist');
@@ -672,25 +730,35 @@
                     const artist = document.getElementById('songArtist').value;
                     const album = document.getElementById('songAlbum').value;
                     const genre = document.getElementById('songGenre').value;
-                    const image = songImagePreview.src || 'https://via.placeholder.com/300x300?text=No+Image';
+
+                    const image = songImagePreview.style.display === 'block' ? songImagePreview.src : 'https://via.placeholder.com/300x300?text=No+Image';
+                    const audioFile = songAudioInput.files[0];
                     
-                    // Add to user uploads
+                    if (!audioFile) {
+                        alert('Please select an audio file');
+                        return;
+                    }
+                    
                     userUploads.songs.push({
                         id: Date.now(),
                         title,
                         artist,
                         album,
-                        year,
+                        genre,
                         image
                     });
                     
-                    // Update user stats
                     userData.uploads.songs++;
                     
                     alert(`Song "${title}" by ${artist} added successfully!`);
                     
                     songForm.reset();
+                    songImagePreview.src = '';
                     songImagePreview.style.display = 'none';
+                    songImageCloseBtn.style.display = 'none';
+                    audioFileName.textContent = '';
+                    audioFileName.style.display = 'none';
+                    audioFileCloseBtn.style.display = 'none';
                 });
             }
             
