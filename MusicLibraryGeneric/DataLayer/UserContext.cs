@@ -66,8 +66,7 @@
                 throw new Exception("User not found");
             }
             existingUser.Username = user.Username;
-            if (!string.IsNullOrEmpty(user.Password) && 
-                !BCrypt.Net.BCrypt.Verify(user.Password, existingUser.Password))
+            if(existingUser.Password!=user.Password)
             {
                 existingUser.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
             }

@@ -1,11 +1,5 @@
 // Sample database of artists
-        const artistDatabase = [
-            { id: 1, firstName: "Freddie", lastName: "Mercury", pseudonim: "Queen", country: "UK" },
-            { id: 2, firstName: "Don", lastName: "Henley", pseudonim: "Eagles", country: "USA" },
-            { id: 3, firstName: "John", lastName: "Lennon", pseudonim: "John Lennon", country: "UK" },
-            { id: 4, firstName: "Axl", lastName: "Rose", pseudonim: "Guns N' Roses", country: "USA" },
-            { id: 5, firstName: "Michael", lastName: "Jackson", pseudonim: "Michael Jackson", country: "USA" }
-        ];
+        let artistDatabase = [];
 
         const userData=JSON.parse(sessionStorage.getItem('user'));
 
@@ -23,6 +17,18 @@
                 { id: 4, title: "Sweet Child O' Mine", artist: "Guns N' Roses", album: "Appetite for Destruction", year: 1987, image: "https://via.placeholder.com/300x300?text=Sweet+Child" }
             ]
         };
+
+        // Function to fetch artist data
+        async function loadArtistData(){
+            const response = await fetch(`${window.API_CONFIG.ARTIST}`, {
+                method: "GET",
+                headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await response.json();
+            artistDatabase = data;
+        }
+        loadArtistData();
+
 
         document.addEventListener('DOMContentLoaded', function() {
             const mainContent = document.getElementById('mainContent');
@@ -252,7 +258,7 @@
                 
                 
                 document.getElementById('editProfileBtn').addEventListener('click', function() {
-                    alert('Edit profile functionality would open here.');
+                    window.location.href="editPage.html"
                 });
                 
                 document.getElementById('deleteAccountBtn').addEventListener('click', async function() {
@@ -557,10 +563,6 @@
                                     <input type="text" id="songGenre" class="form-input" placeholder="Enter genre">
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label for="songYear" class="form-label">Year</label>
-                                    <input type="number" id="songYear" class="form-input" placeholder="Release year" min="1900" max="2099">
-                                </div>
                                 
                                 <div class="form-group">
                                     <label for="songImage" class="form-label">Cover Image</label>
@@ -580,7 +582,7 @@
                                 </div>
                                 
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-plus"></i> Add Song
+                                  Add Song
                                 </button>
                             </form>
                         </div>
@@ -611,7 +613,7 @@
                 const artistSearchResults = document.getElementById('artistSearchResults');
                 
                 songArtistInput.addEventListener('input', function() {
-                    const searchTerm = this.value;
+                    const searchTerm = this.value.toLowerCase();
                     if (searchTerm.length > 1) {
                         const results = artistDatabase.filter(artist => 
                             artist.pseudonim.toLowerCase().includes(searchTerm) ||
@@ -670,7 +672,6 @@
                     const artist = document.getElementById('songArtist').value;
                     const album = document.getElementById('songAlbum').value;
                     const genre = document.getElementById('songGenre').value;
-                    const year = document.getElementById('songYear').value;
                     const image = songImagePreview.src || 'https://via.placeholder.com/300x300?text=No+Image';
                     
                     // Add to user uploads

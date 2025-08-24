@@ -85,11 +85,10 @@ public class UsersController : ControllerBase
         }
     }
     [HttpPut("{id}")]
-    public async Task<ActionResult> Update(int id, [FromBody] User user, bool useNavigationalProperties = false)
+    public async Task<ActionResult> Update([FromBody] User user, bool useNavigationalProperties = false)
     {
         try
         {
-            if (id != user.UserId) return BadRequest("ID mismatch!");
             await _userContext.Update(user, useNavigationalProperties);
             return NoContent();
         }

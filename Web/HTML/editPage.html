@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HarmoniX</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/editPage.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="../Assets/images/HarmoniX.png" 
+                 alt="HarmoniX Logo">
+                <span>HarmoniX</span>
+            </div>
+            <div class="user-actions">
+                <button class="btn btn-outline" id="back-to-home">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Home
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="alert-container" id="alert-container"></div>
+    
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <h2 class="profile-title">Edit Profile</h2>
+                <p class="profile-subtitle">Update your account information</p>
+            </div>
+            <div class="profile-body">
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" id="username" class="form-control" placeholder="Enter your username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="change-password">
+                        <label for="change-password">Change password</label>
+                    </div>
+                    
+                    <div class="password-fields" id="password-fields">
+                        <div class="form-group">
+                            <label for="current-password" class="form-label">Current Password</label>
+                            <input type="password" id="current-password" class="form-control" placeholder="Enter your current password">
+                            <i class="fas fa-eye password-toggle" id="toggle-current-password"></i>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="new-password" class="form-label">New Password</label>
+                            <input type="password" id="new-password" class="form-control" placeholder="Create a new password">
+                            <i class="fas fa-eye password-toggle" id="toggle-new-password"></i>
+                            <small style="display: block; margin-top: 0.5rem; font-size: 0.8rem; color: #666;">
+                                Password must be at least 8 characters
+                            </small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password" class="form-label">Confirm New Password</label>
+                            <input type="password" id="confirm-password" class="form-control" placeholder="Confirm your new password">
+                            <i class="fas fa-eye password-toggle" id="toggle-confirm-password"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-footer">
+                        <button type="button" class="btn btn-cancel" id="cancel-changes">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../JS/editPage.js"></script>
+    <script src="../JS/config.js"></script>
+    <script src="../JS/footer.js"></script>
+
+    <harmonix-footer></harmonix-footer>
+</body>
+</html>

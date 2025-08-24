@@ -1,4 +1,3 @@
-        // Simple script for button functionality
         document.addEventListener('DOMContentLoaded', function() {
             // Handle sign in and upload buttons
             document.getElementById('signInBtn').addEventListener('click', function() {

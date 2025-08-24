@@ -28,7 +28,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('newPasswordForm');
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
-                
+                if(newPassword.value.length<8)
+                {
+                    showStatusMessage("Password must be 8 or more symbols!")
+                    return;
+                }
                 if (newPassword.value !== confirmPassword.value) {
                     showStatusMessage('Passwords do not match', 'error');
                     return;
