@@ -183,10 +183,9 @@ class HarmoniXFooter extends HTMLElement {
           </div>
           
           <div class="footer-links">
-            <a href="#" class="footer-link">Home</a>
-            <a href="#" class="footer-link">Pricing</a>
-            <a href="#" class="footer-link">About</a>
-            <a href="#" class="footer-link">Contact</a>
+            <a href="home.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About</a>
+            <a href="contact.html" class="footer-link">Contact</a>
           </div>
           
           <div class="footer-social">
@@ -220,15 +219,12 @@ class HarmoniXFooter extends HTMLElement {
   }
 
   initMusicNotes() {
-    // Create initial music notes
     for (let i = 0; i < 15; i++) {
       setTimeout(() => this.createMusicNote(), i * 400);
     }
 
-    // Continue creating notes periodically
     setInterval(() => this.createMusicNote(), 600);
   }
 }
 
-// Define the custom element
 customElements.define('harmonix-footer', HarmoniXFooter);

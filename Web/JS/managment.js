@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             const albumData = {
                 title,
-                artist: selectedArtist, // Send full artist object
+                artist: selectedArtist, 
                 releaseDate,
                 tracks: selectedTracks,
                 addedBy: userData // Add userData to albumData
