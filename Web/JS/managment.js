@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const artistForm = document.getElementById('artistForm');
     let currentArtistInput = null;
     let currentSearchTerm = '';
-    let selectedArtists = [];
+    let selectedArtists = []; // For song form (multiple artists)
+    let selectedArtist = null; // For album form (single artist)
     let selectedAlbum = null;
 
     // Navigation handling
@@ -176,7 +177,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             if (response.ok) {
                 artistDatabase.push(newArtist);
-                selectedArtists = [pseudonim]; // Changed to single artist
+                if (currentArtistInput.id === 'albumArtist') {
+                    selectedArtist = pseudonim; // Single artist for album
+                } else {
+                    selectedArtists.push(pseudonim); // Multiple artists for song
+                }
                 updateArtistTags(currentArtistInput);
                 closeArtistModal();
                 showAlert("Successfully created artist!", 'success');
@@ -194,19 +199,35 @@ document.addEventListener('DOMContentLoaded', function() {
         const tagContainer = container.querySelector('.artist-tags') || document.createElement('div');
         tagContainer.className = 'artist-tags';
         tagContainer.innerHTML = '';
-        selectedArtists.forEach(artist => {
-            const tag = document.createElement('span');
-            tag.className = 'artist-tag';
-            tag.textContent = artist;
-            const removeBtn = document.createElement('i');
-            removeBtn.className = 'fas fa-times';
-            removeBtn.addEventListener('click', () => {
-                selectedArtists = [];
-                updateArtistTags(inputElement);
+        if (inputElement.id === 'albumArtist') {
+            if (selectedArtist) {
+                const tag = document.createElement('span');
+                tag.className = 'artist-tag';
+                tag.textContent = selectedArtist;
+                const removeBtn = document.createElement('i');
+                removeBtn.className = 'fas fa-times';
+                removeBtn.addEventListener('click', () => {
+                    selectedArtist = null;
+                    updateArtistTags(inputElement);
+                });
+                tag.appendChild(removeBtn);
+                tagContainer.appendChild(tag);
+            }
+        } else {
+            selectedArtists.forEach(artist => {
+                const tag = document.createElement('span');
+                tag.className = 'artist-tag';
+                tag.textContent = artist;
+                const removeBtn = document.createElement('i');
+                removeBtn.className = 'fas fa-times';
+                removeBtn.addEventListener('click', () => {
+                    selectedArtists = selectedArtists.filter(a => a !== artist);
+                    updateArtistTags(inputElement);
+                });
+                tag.appendChild(removeBtn);
+                tagContainer.appendChild(tag);
             });
-            tag.appendChild(removeBtn);
-            tagContainer.appendChild(tag);
-        });
+        }
         if (!container.querySelector('.artist-tags')) {
             container.insertBefore(tagContainer, container.querySelector('.form-input'));
         }
@@ -366,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadAlbumForm() {
-        let selectedArtist = null;
+        selectedArtist = null;
         let selectedTracks = [];
         mainContent.innerHTML = `
             <div class="form-container">
@@ -823,18 +844,32 @@ document.addEventListener('DOMContentLoaded', function() {
             artistSearchResults.appendChild(addNewElement);
         } else {
             results.forEach(artist => {
-                if (!selectedArtists.includes(artist.pseudonim)) {
-                    const artistElement = document.createElement('div');
-                    artistElement.className = 'artist-result';
-                    artistElement.textContent = `${artist.pseudonim} (${artist.firstName} ${artist.lastName})`;
-                    artistElement.addEventListener('click', function() {
-                        selectedArtists = [artist.pseudonim]; // Changed to single artist
-                        selectedArtist = artist.pseudonim; // Update selectedArtist for track search
-                        updateArtistTags(inputElement);
-                        inputElement.value = '';
-                        artistSearchResults.style.display = 'none';
-                    });
-                    artistSearchResults.appendChild(artistElement);
+                if (inputElement.id === 'albumArtist') {
+                    if (!selectedArtist || selectedArtist !== artist.pseudonim) {
+                        const artistElement = document.createElement('div');
+                        artistElement.className = 'artist-result';
+                        artistElement.textContent = `${artist.pseudonim} (${artist.firstName} ${artist.lastName})`;
+                        artistElement.addEventListener('click', function() {
+                            selectedArtist = artist.pseudonim; // Single artist for album
+                            updateArtistTags(inputElement);
+                            inputElement.value = '';
+                            artistSearchResults.style.display = 'none';
+                        });
+                        artistSearchResults.appendChild(artistElement);
+                    }
+                } else {
+                    if (!selectedArtists.includes(artist.pseudonim)) {
+                        const artistElement = document.createElement('div');
+                        artistElement.className = 'artist-result';
+                        artistElement.textContent = `${artist.pseudonim} (${artist.firstName} ${artist.lastName})`;
+                        artistElement.addEventListener('click', function() {
+                            selectedArtists.push(artist.pseudonim); // Multiple artists for song
+                            updateArtistTags(inputElement);
+                            inputElement.value = '';
+                            artistSearchResults.style.display = 'none';
+                        });
+                        artistSearchResults.appendChild(artistElement);
+                    }
                 }
             });
         }
@@ -847,7 +882,7 @@ document.addEventListener('DOMContentLoaded', function() {
         results.forEach(album => {
             if (!selectedAlbum || selectedAlbum.title !== album.title) {
                 const albumElement = document.createElement('div');
-                albumElement.className = 'album ', 'album-result';
+                albumElement.className = 'album-result';
                 albumElement.textContent = `${album.title} (${album.year})`;
                 albumElement.addEventListener('click', function() {
                     selectedAlbum = album;
