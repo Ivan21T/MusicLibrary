@@ -92,7 +92,7 @@
                     };
                 }
 
-                response = await fetch(`${window.API_CONFIG.USER}/${user.userId}`, {
+                response = await fetch(`${window.API_CONFIG.USER}`, {
                     method: "PUT",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)

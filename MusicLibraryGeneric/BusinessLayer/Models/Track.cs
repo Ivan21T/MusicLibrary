@@ -24,7 +24,7 @@ public class Track
     
     [Required]
     public string MusicData { get; set; }
-    public User AddedBy { get; set; } 
+    public User? AddedBy { get; set; } 
 
     public Track()
     {

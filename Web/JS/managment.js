@@ -13,7 +13,14 @@ async function loadTrackData() {
         headers: { 'Content-Type': 'application/json' }
     });
     const data = await response.json();
-    trackDatabase = data;
+    for(let i=1; i<=data; i++) {
+        const getTrack = await fetch(`${window.API_CONFIG.TRACK}/${i}`, {
+            method: "GET",
+            headers: { 'Content-Type': 'application/json' }
+        });
+        const track = await getTrack.json();
+        trackDatabase.push(track);
+    }
 }
 
 async function loadAlbumData() {
@@ -48,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const artistForm = document.getElementById('artistForm');
     let currentArtistInput = null;
     let currentSearchTerm = '';
-    let selectedArtists = []; // For song form (multiple artists)
-    let selectedArtist = null; // For album form (single artist)
+    let selectedArtists = []; // For song form (multiple artist objects)
+    let selectedArtist = null; // For album form (single artist object)
     let selectedAlbum = null;
 
     // Navigation handling
@@ -178,9 +185,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.ok) {
                 artistDatabase.push(newArtist);
                 if (currentArtistInput.id === 'albumArtist') {
-                    selectedArtist = pseudonim; // Single artist for album
+                    selectedArtist = newArtist; // Single artist object for album
                 } else {
-                    selectedArtists.push(pseudonim); // Multiple artists for song
+                    selectedArtists.push(newArtist); // Multiple artist objects for song
                 }
                 updateArtistTags(currentArtistInput);
                 closeArtistModal();
@@ -203,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (selectedArtist) {
                 const tag = document.createElement('span');
                 tag.className = 'artist-tag';
-                tag.textContent = selectedArtist;
+                tag.textContent = selectedArtist.pseudonim;
                 const removeBtn = document.createElement('i');
                 removeBtn.className = 'fas fa-times';
                 removeBtn.addEventListener('click', () => {
@@ -217,11 +224,11 @@ document.addEventListener('DOMContentLoaded', function() {
             selectedArtists.forEach(artist => {
                 const tag = document.createElement('span');
                 tag.className = 'artist-tag';
-                tag.textContent = artist;
+                tag.textContent = artist.pseudonim;
                 const removeBtn = document.createElement('i');
                 removeBtn.className = 'fas fa-times';
                 removeBtn.addEventListener('click', () => {
-                    selectedArtists = selectedArtists.filter(a => a !== artist);
+                    selectedArtists = selectedArtists.filter(a => a.pseudonim !== artist.pseudonim);
                     updateArtistTags(inputElement);
                 });
                 tag.appendChild(removeBtn);
@@ -342,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <img src="${item.image}" alt="${item.title}" class="upload-image">
                             <div class="upload-info">
                                 <h3 class="upload-title">${item.title}</h3>
-                                <p class="upload-artist">${item.artists.join(', ')}</p>
+                                <p class="upload-artist">${item.artists.map(a => typeof a === 'string' ? a : a.pseudonim).join(', ')}</p>
                                 <div class="upload-meta">
                                     <span>${item.year}</span>
                                     <span>${item.tracks} tracks</span>
@@ -356,7 +363,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <img src="${item.image}" alt="${item.title}" class="upload-image">
                             <div class="upload-info">
                                 <h3 class="upload-title">${item.title}</h3>
-                                <p class="upload-artist">${item.artists.join(', ')}</p>
+                                <p class="upload-artist">${item.artists.map(a => typeof a === 'string' ? a : a.pseudonim).join(', ')}</p>
                                 <div class="upload-meta">
                                     <span>${item.year}</span>
                                     <span>${item.album}</span>
@@ -466,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 trackSearchResults.style.display = 'none';
             }
         });
-        const albumForm = document.getElementById('albumForm');
+        const albumForm = document.getElementById('albumForm')
         albumForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             const title = document.getElementById('albumTitle').value;
@@ -478,9 +485,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             const albumData = {
                 title,
-                artist: selectedArtist,
+                artist: selectedArtist, // Send full artist object
                 releaseDate,
-                tracks: selectedTracks
+                tracks: selectedTracks,
+                addedBy: userData // Add userData to albumData
             };
             try {
                 const response = await fetch(`${window.API_CONFIG.ALBUM}`, {
@@ -492,7 +500,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     userUploads.albums.push({
                         id: Date.now(),
                         title,
-                        artists: [selectedArtist],
+                        artists: [selectedArtist.pseudonim], // Store pseudonym for display
                         year: new Date(releaseDate).getFullYear(),
                         tracks: selectedTracks.length,
                         image: 'https://via.placeholder.com/300x300?text=No+Image'
@@ -773,17 +781,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
 
-                // Map selected artists to full artist objects
-                const artistObjects = artistDatabase.filter(artist => 
-                    selectedArtists.includes(artist.pseudonim)
-                );
-
                 const trackData = {
                     Title: title,
                     Genre: parseInt(genre),
                     MusicData: audioBase64,
                     ImageData: imageBase64,
-                    Artists: artistObjects,
+                    Artists: selectedArtists, // Send full artist objects
                     AddedBy: userData,
                     Album: selectedAlbum
                 };
@@ -798,7 +801,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     userUploads.songs.push({
                         id: Date.now(),
                         title,
-                        artists: selectedArtists,
+                        artists: selectedArtists.map(a => a.pseudonim), // Store pseudonyms for display
                         album: selectedAlbum ? selectedAlbum.title : '',
                         year: selectedAlbum ? selectedAlbum.year : new Date().getFullYear(),
                         image: imageBase64 ? `data:image/jpeg;base64,${imageBase64}` : 'https://via.placeholder.com/300x300?text=No+Image'
@@ -845,12 +848,12 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             results.forEach(artist => {
                 if (inputElement.id === 'albumArtist') {
-                    if (!selectedArtist || selectedArtist !== artist.pseudonim) {
+                    if (!selectedArtist || selectedArtist.pseudonim !== artist.pseudonim) {
                         const artistElement = document.createElement('div');
                         artistElement.className = 'artist-result';
                         artistElement.textContent = `${artist.pseudonim} (${artist.firstName} ${artist.lastName})`;
                         artistElement.addEventListener('click', function() {
-                            selectedArtist = artist.pseudonim; // Single artist for album
+                            selectedArtist = artist; // Store full artist object
                             updateArtistTags(inputElement);
                             inputElement.value = '';
                             artistSearchResults.style.display = 'none';
@@ -858,12 +861,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         artistSearchResults.appendChild(artistElement);
                     }
                 } else {
-                    if (!selectedArtists.includes(artist.pseudonim)) {
+                    if (!selectedArtists.some(a => a.pseudonim === artist.pseudonim)) {
                         const artistElement = document.createElement('div');
                         artistElement.className = 'artist-result';
                         artistElement.textContent = `${artist.pseudonim} (${artist.firstName} ${artist.lastName})`;
                         artistElement.addEventListener('click', function() {
-                            selectedArtists.push(artist.pseudonim); // Multiple artists for song
+                            selectedArtists.push(artist); // Store full artist object
                             updateArtistTags(inputElement);
                             inputElement.value = '';
                             artistSearchResults.style.display = 'none';

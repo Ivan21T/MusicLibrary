@@ -21,16 +21,7 @@ public class TrackController : ControllerBase
         try
         {
             var tracks = await _tracksContext.ReadAll(useNavigationalProperties,isReadOnly);
-            {
-                var reducedTracks = tracks.Select(t => new 
-                {
-                    t.TrackId,
-                    t.Title
-                }).ToList();
-
-                return Ok(reducedTracks);
-            }
-            return Ok(tracks);
+            return Ok(tracks.Count);
         }
         catch
         {
@@ -65,7 +56,7 @@ public class TrackController : ControllerBase
         }
     }
 
-    [HttpPut("{id}")]
+    [HttpPut]
     public async Task<ActionResult> Update([FromBody] Track track, bool useNavigationalProperties = false)
     {
         try

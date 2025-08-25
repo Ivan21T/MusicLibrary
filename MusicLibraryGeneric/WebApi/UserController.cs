@@ -84,7 +84,7 @@ public class UsersController : ControllerBase
             return StatusCode(500, "Cannot create user!");
         }
     }
-    [HttpPut("{id}")]
+    [HttpPut]
     public async Task<ActionResult> Update([FromBody] User user, bool useNavigationalProperties = false)
     {
         try

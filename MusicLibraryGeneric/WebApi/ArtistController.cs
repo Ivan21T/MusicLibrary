@@ -69,7 +69,7 @@ public class ArtistController:ControllerBase
             return StatusCode(500, "Cannot delete artist!");
         }
     }
-    [HttpPut("{id}")]
+    [HttpPut]
     public async Task<ActionResult> Update([FromBody] Artist artist,bool useNavigationalProperties=false)
     {
         try
