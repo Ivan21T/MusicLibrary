@@ -123,20 +123,19 @@ namespace DataLayer.Migrations
                     b.Property<int>("AddedByUserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("AlbumId")
+                    b.Property<int?>("AlbumId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Genre")
-                        .HasMaxLength(30)
                         .HasColumnType("INTEGER");
 
-                    b.Property<byte[]>("ImageData")
+                    b.Property<string>("ImageData")
                         .IsRequired()
-                        .HasColumnType("BLOB");
+                        .HasColumnType("TEXT");
 
-                    b.Property<byte[]>("MusicData")
+                    b.Property<string>("MusicData")
                         .IsRequired()
-                        .HasColumnType("BLOB");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -226,9 +225,7 @@ namespace DataLayer.Migrations
 
                     b.HasOne("BusinessLayer.Album", "Album")
                         .WithMany("Tracks")
-                        .HasForeignKey("AlbumId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AlbumId");
 
                     b.Navigation("AddedBy");
 

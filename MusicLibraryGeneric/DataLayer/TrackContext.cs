@@ -12,9 +12,56 @@ public class TrackContext:IDb<Track,int>
     }
     public async Task Create(Track track)
     {
+        if (track.Album != null)
+        {
+            var existingAlbum = await _dbContext.Albums
+                .FirstOrDefaultAsync(a => a.AlbumId == track.Album.AlbumId);
+
+            if (existingAlbum != null)
+            {
+                track.Album = existingAlbum; 
+            }
+            else
+            {
+                _dbContext.Entry(track.Album).State = EntityState.Added; 
+            }
+        }
+        var attachedArtists = new List<Artist>();
+        foreach (var artist in track.Artists)
+        {
+            var existingArtist = await _dbContext.Artists
+                .FirstOrDefaultAsync(a => a.ArtistId == artist.ArtistId);
+
+            if (existingArtist != null)
+            {
+                attachedArtists.Add(existingArtist);
+            }
+            else
+            {
+                attachedArtists.Add(artist); 
+            }
+        }
+        track.Artists = attachedArtists;
+        
+        if (track.AddedBy != null)
+        {
+            var existingUser = await _dbContext.Users
+                .FirstOrDefaultAsync(u => u.UserId == track.AddedBy.UserId);
+
+            if (existingUser != null)
+            {
+                track.AddedBy = existingUser;
+            }
+            else
+            {
+                _dbContext.Entry(track.AddedBy).State = EntityState.Added;
+            }
+        }
+        
         await _dbContext.Tracks.AddAsync(track);
         await _dbContext.SaveChangesAsync();
     }
+
 
     public async Task<Track> Read(int id, bool useNavigationalProperties = false, bool isReadOnly = false)
     {

@@ -21,6 +21,8 @@ builder.Services.AddDbContext<MusicLibraryDbContext>(options =>
 // Repository/Context Services
 builder.Services.AddScoped<IDb<User, int>, UserContext>();
 builder.Services.AddScoped<IDb<Artist, int>,ArtistContext>();
+builder.Services.AddScoped<IDb<Track, int>, TrackContext>();
+builder.Services.AddScoped<IDb<Album, int>, AlbumContext>();
 
 // CORS Configuration
 builder.Services.AddCors(options =>

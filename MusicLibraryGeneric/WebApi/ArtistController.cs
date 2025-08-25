@@ -8,11 +8,9 @@ namespace WebApi;
 public class ArtistController:ControllerBase
 {
     private readonly IDb<Artist, int> _artistContext;
-    private readonly MusicLibraryDbContext _dbContext;
 
-    public ArtistController(MusicLibraryDbContext dbContext, IDb<Artist, int> artistContext)
+    public ArtistController( IDb<Artist, int> artistContext)
     {
-        _dbContext=dbContext;
         _artistContext=artistContext;
     }
 
@@ -31,16 +29,57 @@ public class ArtistController:ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Artist>>> GetAll(bool useNavigationalProperties=false)
+    public async Task<ActionResult<List<Artist>>> GetAll(bool useNavigationalProperties=false,bool isReadOnly=false)
     {
         try
         {
-            var artists = await _artistContext.ReadAll(useNavigationalProperties);
+            var artists = await _artistContext.ReadAll(useNavigationalProperties,isReadOnly);
             return Ok(artists);
         }
         catch
         {
             return StatusCode(500, "Cannot get artists!");
+        }
+    }
+ 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Artist>> Get(int id, bool useNavigationalProperties = false, bool isReadOnly = false)
+    {
+        try
+        {
+            var artist = await _artistContext.Read(id, useNavigationalProperties, isReadOnly);
+            return Ok(artist);
+        }
+        catch
+        {
+            return StatusCode(500, "Cannot get artist!");
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(int id)
+    {
+        try
+        {
+            await _artistContext.Delete(id);
+            return NoContent();
+        }
+        catch
+        {
+            return StatusCode(500, "Cannot delete artist!");
+        }
+    }
+    [HttpPut("{id}")]
+    public async Task<ActionResult> Update([FromBody] Artist artist,bool useNavigationalProperties=false)
+    {
+        try
+        {
+            await _artistContext.Update(artist, useNavigationalProperties);
+            return NoContent();
+        }
+        catch
+        {
+            return StatusCode(500, "Cannot update artist!");
         }
     }
 }

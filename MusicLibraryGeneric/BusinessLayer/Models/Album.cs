@@ -9,12 +9,12 @@ public class Album
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int AlbumId { get; set; }
     
-    [Required(ErrorMessage = "Album title is required")]
     [StringLength(50, ErrorMessage = "Album title cannot exceed 50 characters")]
+    [Required]
     public string Title { get; set; }
     
-    [Required(ErrorMessage = "Release date is required")]
     [CustomValidation(typeof(Validator),nameof(Validator.ValidateReleaseDate))]
+    [Required]
     public DateTime ReleaseDate{get;set;}
     
     public Artist Artist{get;set;}
