@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Infrastructure/MusicLibraryECS.Infrastructure.csproj": {}
+    "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryECS/MusicLibraryECS.Infrastructure/MusicLibraryECS.Infrastructure.csproj": {}
   },
   "projects": {
-    "/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/MusicLibraryECS.Core.csproj": {
+    "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryECS/MusicLibraryECS.Core/MusicLibraryECS.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/MusicLibraryECS.Core.csproj",
+        "projectUniqueName": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryECS/MusicLibraryECS.Core/MusicLibraryECS.Core.csproj",
         "projectName": "MusicLibraryECS.Core",
-        "projectPath": "/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/MusicLibraryECS.Core.csproj",
+        "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryECS/MusicLibraryECS.Core/MusicLibraryECS.Core.csproj",
         "packagesPath": "/home/itt/.nuget/packages/",
-        "outputPath": "/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/obj/",
+        "outputPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryECS/MusicLibraryECS.Core/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/itt/.nuget/NuGet/NuGet.Config"
@@ -52,9 +52,25 @@
               "target": "Package",
               "version": "[9.0.8, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite.Core": {
               "target": "Package",
               "version": "[9.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "SQLitePCLRaw.bundle_e_sqlite3": {
+              "target": "Package",
+              "version": "[3.0.1, )"
             }
           },
           "imports": [
@@ -77,14 +93,14 @@
         }
       }
     },
-    "/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Infrastructure/MusicLibraryECS.Infrastructure.csproj": {
+    "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryECS/MusicLibraryECS.Infrastructure/MusicLibraryECS.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Infrastructure/MusicLibraryECS.Infrastructure.csproj",
+        "projectUniqueName": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryECS/MusicLibraryECS.Infrastructure/MusicLibraryECS.Infrastructure.csproj",
         "projectName": "MusicLibraryECS.Infrastructure",
-        "projectPath": "/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Infrastructure/MusicLibraryECS.Infrastructure.csproj",
+        "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryECS/MusicLibraryECS.Infrastructure/MusicLibraryECS.Infrastructure.csproj",
         "packagesPath": "/home/itt/.nuget/packages/",
-        "outputPath": "/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Infrastructure/obj/",
+        "outputPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryECS/MusicLibraryECS.Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/itt/.nuget/NuGet/NuGet.Config"
@@ -99,8 +115,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/MusicLibraryECS.Core.csproj": {
-                "projectPath": "/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/MusicLibraryECS.Core.csproj"
+              "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryECS/MusicLibraryECS.Core/MusicLibraryECS.Core.csproj": {
+                "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryECS/MusicLibraryECS.Core/MusicLibraryECS.Core.csproj"
               }
             }
           }
@@ -120,6 +136,32 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite.Core": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "SQLitePCLRaw.bundle_e_sqlite3": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

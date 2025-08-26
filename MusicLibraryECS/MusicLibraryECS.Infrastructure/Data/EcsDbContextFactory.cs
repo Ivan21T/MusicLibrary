@@ -8,7 +8,10 @@ public class EcsDbContextFactory : IDesignTimeDbContextFactory<EcsDbContext>
     public EcsDbContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<EcsDbContext>();
-        optionsBuilder.UseSqlite("Data source=music_library_ecs");
+        optionsBuilder.UseSqlite(
+            "Data source=music_library_ecs.db",
+            b => b.MigrationsAssembly("MusicLibraryECS.Infrastructure") 
+        );
         return new EcsDbContext(optionsBuilder.Options);
     }
 }

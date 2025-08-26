@@ -8,7 +8,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<EcsDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        b => b.MigrationsAssembly("MusicLibraryECS.Infrastructure")
+    ));
 builder.Services.AddScoped<ArtistSystem>();
 builder.Services.AddScoped<AlbumSystem>();
 builder.Services.AddScoped<TrackSystem>();
