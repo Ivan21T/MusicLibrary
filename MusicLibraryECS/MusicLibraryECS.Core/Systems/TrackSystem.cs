@@ -29,11 +29,11 @@ public class TrackSystem : ISystem
     }
 
     public Entity? GetTrack(Guid id) => _context.Entities
-        .Include(e => e.Components)
+        .Include(e => e.Components.OfType<TrackComponent>())
         .FirstOrDefault(e => e.Id == id);
 
     public List<Entity> GetAllTracks() => _context.Entities
-        .Include(e => e.Components)
+        .Include(e => e.Components.OfType<TrackComponent>())
         .Where(e => e.Components.OfType<TrackComponent>().Any())
         .ToList();
 
@@ -64,7 +64,7 @@ public class TrackSystem : ISystem
     }
 
     public List<Entity> GetTracksByGenre(string genre) => _context.Entities
-        .Include(e => e.Components)
+        .Include(e => e.Components.OfType<TrackComponent>())
         .Where(e => e.Components.OfType<TrackComponent>().Any(t => t.Genre == genre))
         .ToList();
 

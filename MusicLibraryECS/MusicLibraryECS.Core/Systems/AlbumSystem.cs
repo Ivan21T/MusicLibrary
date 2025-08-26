@@ -28,11 +28,11 @@ public class AlbumSystem : ISystem
     }
 
     public Entity? GetAlbum(Guid id) => _context.Entities
-        .Include(e => e.Components)
+        .Include(e => e.Components.OfType<AlbumComponent>())
         .FirstOrDefault(e => e.Id == id);
 
     public List<Entity> GetAllAlbums() => _context.Entities
-        .Include(e => e.Components)
+        .Include(e => e.Components.OfType<AlbumComponent>())
         .Where(e => e.Components.OfType<AlbumComponent>().Any())
         .ToList();
 
@@ -62,7 +62,7 @@ public class AlbumSystem : ISystem
     }
 
     public List<Entity> GetAlbumsByArtist(Guid artistId) => _context.Entities
-        .Include(e => e.Components)
+        .Include(e => e.Components.OfType<AlbumComponent>())
         .Where(e => e.Components.OfType<AlbumComponent>().Any(a => a.ArtistEntityId == artistId))
         .ToList();
 }
