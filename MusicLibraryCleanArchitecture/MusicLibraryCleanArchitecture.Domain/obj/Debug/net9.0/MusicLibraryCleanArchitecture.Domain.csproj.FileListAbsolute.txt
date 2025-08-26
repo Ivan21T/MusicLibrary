@@ -1,0 +1,12 @@
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/bin/Debug/net9.0/MusicLibraryCleanArchitecture.Domain.deps.json
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/bin/Debug/net9.0/MusicLibraryCleanArchitecture.Domain.dll
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/bin/Debug/net9.0/MusicLibraryCleanArchitecture.Domain.pdb
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/obj/Debug/net9.0/MusicLibraryCleanArchitecture.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/obj/Debug/net9.0/MusicLibraryCleanArchitecture.Domain.AssemblyInfoInputs.cache
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/obj/Debug/net9.0/MusicLibraryCleanArchitecture.Domain.AssemblyInfo.cs
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/obj/Debug/net9.0/MusicLibraryCleanArchitecture.Domain.csproj.CoreCompileInputs.cache
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/obj/Debug/net9.0/MusicLibraryCleanArchitecture.Domain.sourcelink.json
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/obj/Debug/net9.0/MusicLibraryCleanArchitecture.Domain.dll
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/obj/Debug/net9.0/refint/MusicLibraryCleanArchitecture.Domain.dll
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/obj/Debug/net9.0/MusicLibraryCleanArchitecture.Domain.pdb
+/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/obj/Debug/net9.0/ref/MusicLibraryCleanArchitecture.Domain.dll

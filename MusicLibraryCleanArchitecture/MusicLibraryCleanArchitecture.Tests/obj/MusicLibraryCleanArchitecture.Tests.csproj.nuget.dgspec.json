@@ -1,0 +1,341 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Tests/MusicLibraryCleanArchitecture.Tests.csproj": {}
+  },
+  "projects": {
+    "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Application/MusicLibraryCleanArchitecture.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Application/MusicLibraryCleanArchitecture.Application.csproj",
+        "projectName": "MusicLibraryCleanArchitecture.Application",
+        "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Application/MusicLibraryCleanArchitecture.Application.csproj",
+        "packagesPath": "/home/itt/.nuget/packages/",
+        "outputPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/itt/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/MusicLibraryCleanArchitecture.Domain.csproj": {
+                "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/MusicLibraryCleanArchitecture.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.9.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.303/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/MusicLibraryCleanArchitecture.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/MusicLibraryCleanArchitecture.Domain.csproj",
+        "projectName": "MusicLibraryCleanArchitecture.Domain",
+        "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/MusicLibraryCleanArchitecture.Domain.csproj",
+        "packagesPath": "/home/itt/.nuget/packages/",
+        "outputPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/itt/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.303/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Infrastructure/MusicLibraryCleanArchitecture.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Infrastructure/MusicLibraryCleanArchitecture.Infrastructure.csproj",
+        "projectName": "MusicLibraryCleanArchitecture.Infrastructure",
+        "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Infrastructure/MusicLibraryCleanArchitecture.Infrastructure.csproj",
+        "packagesPath": "/home/itt/.nuget/packages/",
+        "outputPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/itt/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Application/MusicLibraryCleanArchitecture.Application.csproj": {
+                "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Application/MusicLibraryCleanArchitecture.Application.csproj"
+              },
+              "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/MusicLibraryCleanArchitecture.Domain.csproj": {
+                "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/MusicLibraryCleanArchitecture.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.Extensions.Configuration.Binder": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.303/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Tests/MusicLibraryCleanArchitecture.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Tests/MusicLibraryCleanArchitecture.Tests.csproj",
+        "projectName": "MusicLibraryCleanArchitecture.Tests",
+        "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Tests/MusicLibraryCleanArchitecture.Tests.csproj",
+        "packagesPath": "/home/itt/.nuget/packages/",
+        "outputPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/itt/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Application/MusicLibraryCleanArchitecture.Application.csproj": {
+                "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Application/MusicLibraryCleanArchitecture.Application.csproj"
+              },
+              "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/MusicLibraryCleanArchitecture.Domain.csproj": {
+                "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Domain/MusicLibraryCleanArchitecture.Domain.csproj"
+              },
+              "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Infrastructure/MusicLibraryCleanArchitecture.Infrastructure.csproj": {
+                "projectPath": "/home/itt/Документи/GitHub/MusicLibrary/MusicLibraryCleanArchitecture/MusicLibraryCleanArchitecture.Infrastructure/MusicLibraryCleanArchitecture.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.12.0, )"
+            },
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.12.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.72, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.9.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.303/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
