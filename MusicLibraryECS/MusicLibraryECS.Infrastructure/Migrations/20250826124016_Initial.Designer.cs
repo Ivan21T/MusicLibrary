@@ -11,7 +11,7 @@ using MusicLibraryECS.Core.Data;
 namespace MusicLibraryECS.Infrastructure.Migrations
 {
     [DbContext(typeof(EcsDbContext))]
-    [Migration("20250826080447_Initial")]
+    [Migration("20250826124016_Initial")]
     partial class Initial
     {
         /// <inheritdoc />

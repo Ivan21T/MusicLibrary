@@ -29,12 +29,13 @@ public class ArtistSystem : ISystem
     }
 
     public Entity? GetArtist(Guid id) => _context.Entities
-        .Include(e => e.Components.OfType<ArtistComponent>())
-        .FirstOrDefault(e => e.Id == id);
+        .Include(e => e.Components) 
+        .FirstOrDefault(e => e.Id == id && e.Components.Any(c => c is ArtistComponent));
+
 
     public List<Entity> GetAllArtists() => _context.Entities
-        .Include(e => e.Components.OfType<ArtistComponent>())
-        .Where(e => e.Components.OfType<ArtistComponent>().Any())
+        .Include(e => e.Components) 
+        .Where(e => e.Components.Any(c => c is ArtistComponent))
         .ToList();
 
     public void UpdateArtist(Guid id, string firstName, string lastName, string pseudonym, string country)
@@ -64,9 +65,10 @@ public class ArtistSystem : ISystem
     }
 
     public List<Entity> GetAlbumsByArtist(Guid artistId) => _context.Entities
-        .Include(e => e.Components.OfType<AlbumComponent>())
+        .Include(e => e.Components)  
         .Where(e => e.Components.OfType<AlbumComponent>().Any(a => a.ArtistEntityId == artistId))
         .ToList();
+
 
     public List<AlbumWithTracks> GetAlbumsWithTracksByArtist(Guid artistId)
     {

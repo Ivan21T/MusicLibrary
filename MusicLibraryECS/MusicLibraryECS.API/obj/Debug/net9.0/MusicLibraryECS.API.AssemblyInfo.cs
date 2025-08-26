@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MusicLibraryECS.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b999795908a23761acf779c0bffec6aa7332787")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e48eb7b880080671a57fa11cff365a48ac06b10d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MusicLibraryECS.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MusicLibraryECS.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

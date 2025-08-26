@@ -28,13 +28,14 @@ public class TrackSystem : ISystem
         return entity;
     }
 
-    public Entity? GetTrack(Guid id) => _context.Entities
-        .Include(e => e.Components.OfType<TrackComponent>())
-        .FirstOrDefault(e => e.Id == id);
+    public Entity? GetTrack(Guid id) =>
+        _context.Entities
+            .FirstOrDefault(e => e.Id == id && e.Components.Any(c => c is TrackComponent));
+
 
     public List<Entity> GetAllTracks() => _context.Entities
-        .Include(e => e.Components.OfType<TrackComponent>())
-        .Where(e => e.Components.OfType<TrackComponent>().Any())
+        .Include(e => e.Components)  
+        .Where(e => e.Components.OfType<TrackComponent>().Any())  
         .ToList();
 
     public void UpdateTrack(Guid id, string title, TimeSpan duration, Guid albumEntityId, string genre)
@@ -64,9 +65,10 @@ public class TrackSystem : ISystem
     }
 
     public List<Entity> GetTracksByGenre(string genre) => _context.Entities
-        .Include(e => e.Components.OfType<TrackComponent>())
+        .Include(e => e.Components)  
         .Where(e => e.Components.OfType<TrackComponent>().Any(t => t.Genre == genre))
         .ToList();
+
 
     public List<TrackWithDetails> GetTracksWithDetailsByGenre(string genre)
     {
