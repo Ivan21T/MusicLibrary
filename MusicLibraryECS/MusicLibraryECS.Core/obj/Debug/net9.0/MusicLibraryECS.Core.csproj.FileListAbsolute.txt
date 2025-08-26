@@ -1,0 +1,12 @@
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/bin/Debug/net9.0/MusicLibraryECS.Core.deps.json
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/bin/Debug/net9.0/MusicLibraryECS.Core.dll
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/bin/Debug/net9.0/MusicLibraryECS.Core.pdb
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/obj/Debug/net9.0/MusicLibraryECS.Core.csproj.AssemblyReference.cache
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/obj/Debug/net9.0/MusicLibraryECS.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/obj/Debug/net9.0/MusicLibraryECS.Core.AssemblyInfoInputs.cache
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/obj/Debug/net9.0/MusicLibraryECS.Core.AssemblyInfo.cs
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/obj/Debug/net9.0/MusicLibraryECS.Core.csproj.CoreCompileInputs.cache
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/obj/Debug/net9.0/MusicLibraryECS.Core.dll
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/obj/Debug/net9.0/refint/MusicLibraryECS.Core.dll
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/obj/Debug/net9.0/MusicLibraryECS.Core.pdb
+/home/itt/Документи/C#Projects/MusicLibraryECS/MusicLibraryECS.Core/obj/Debug/net9.0/ref/MusicLibraryECS.Core.dll

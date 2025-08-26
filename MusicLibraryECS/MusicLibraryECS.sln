@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibraryECS.API", "MusicLibraryECS.API\MusicLibraryECS.API.csproj", "{FBA38028-CF40-4198-9D77-B06D8F37C0EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibraryECS.Core", "MusicLibraryECS.Core\MusicLibraryECS.Core.csproj", "{8A02EE56-723B-4224-A513-202B158195BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicLibraryECS.Infrastructure", "MusicLibraryECS.Infrastructure\MusicLibraryECS.Infrastructure.csproj", "{070B5F36-324E-48C6-8DF5-D08EDFEC9690}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBA38028-CF40-4198-9D77-B06D8F37C0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBA38028-CF40-4198-9D77-B06D8F37C0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBA38028-CF40-4198-9D77-B06D8F37C0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBA38028-CF40-4198-9D77-B06D8F37C0EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A02EE56-723B-4224-A513-202B158195BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A02EE56-723B-4224-A513-202B158195BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A02EE56-723B-4224-A513-202B158195BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A02EE56-723B-4224-A513-202B158195BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{070B5F36-324E-48C6-8DF5-D08EDFEC9690}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{070B5F36-324E-48C6-8DF5-D08EDFEC9690}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{070B5F36-324E-48C6-8DF5-D08EDFEC9690}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{070B5F36-324E-48C6-8DF5-D08EDFEC9690}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

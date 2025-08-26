@@ -1,0 +1,6 @@
+@MusicLibraryECS.API_HostAddress = http://localhost:5015
+
+GET {{MusicLibraryECS.API_HostAddress}}/api/Artists/
+Accept: application/json
+
+###
