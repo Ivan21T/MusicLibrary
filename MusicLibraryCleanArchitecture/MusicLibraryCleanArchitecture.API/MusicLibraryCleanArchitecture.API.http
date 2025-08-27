@@ -1,6 +1,6 @@
 @MusicLibraryCleanArchitecture.API_HostAddress = http://localhost:5191
 
-GET {{MusicLibraryCleanArchitecture.API_HostAddress}}/weatherforecast/
+GET {{MusicLibraryCleanArchitecture.API_HostAddress}}/api/Artists/
 Accept: application/json
 
 ###

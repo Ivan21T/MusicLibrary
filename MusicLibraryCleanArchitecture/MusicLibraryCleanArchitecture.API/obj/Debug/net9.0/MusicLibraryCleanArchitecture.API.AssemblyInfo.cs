@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MusicLibraryCleanArchitecture.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b999795908a23761acf779c0bffec6aa7332787")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+595a14701fefdf5fe29986849976963e095b81bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("MusicLibraryCleanArchitecture.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MusicLibraryCleanArchitecture.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
